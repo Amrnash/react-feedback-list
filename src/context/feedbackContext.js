@@ -10,10 +10,12 @@ export const FeedbackProvider = ({ children }) => {
   ]);
   const [editedItem, setEditedItem] = useState({ item: {}, edit: false });
   const handleDelete = (id) => {
-    const filteredFeedbackItems = feedbackItems.filter(
-      (item) => item.id !== id
-    );
-    setFeedbackItems(filteredFeedbackItems);
+    if (window.confirm("Do you really want to delete this item?")) {
+      const filteredFeedbackItems = feedbackItems.filter(
+        (item) => item.id !== id
+      );
+      setFeedbackItems(filteredFeedbackItems);
+    }
   };
   const handleAddFeedback = (text, rating) => {
     const newFeedback = { id: uuidv4(), text, rating };

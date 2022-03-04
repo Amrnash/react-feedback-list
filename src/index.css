@@ -45,7 +45,7 @@ body {
 }
 .input {
   width: 70%;
-  padding: 15px 0px;
+  padding: 15px 10px;
   height: 40px;
   font-family: "Roboto", sans-serif;
   border: 1px solid lightgrey;
@@ -54,6 +54,17 @@ body {
 }
 .input:focus {
   outline-color: rgb(236, 75, 102);
+}
+.select-container {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 838px) {
+  .select-container {
+    height: 100px;
+  }
 }
 .radio-container {
   display: inline-block;

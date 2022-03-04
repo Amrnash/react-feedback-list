@@ -44,14 +44,7 @@ function AddFeedback() {
         Tell Us Your Feedback
       </h2>
       <form onSubmit={handleSubmit}>
-        <div
-          style={{
-            height: "180px",
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className="select-container">
           <SelectRating number={10} select={select} />
         </div>
         <div className="form-group">
