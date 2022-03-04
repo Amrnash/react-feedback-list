@@ -1,13 +1,148 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Roboto", sans-serif;
+  background: rgb(46, 34, 102);
+}
+/* utilities */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.card {
+  padding: 25px 40px;
+  border-radius: 5px;
+  background-color: white;
+  margin: 30px 20px;
+  position: relative;
+}
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+.btn:focus {
+  outline: none;
+}
+.btn:hover {
+  filter: brightness(95%);
+}
+.btn.primary {
+  background-color: rgb(236, 75, 102);
+}
+.btn:disabled {
+  background-color: lightgrey;
+  cursor: default;
+}
+.input {
+  width: 70%;
+  padding: 15px 0px;
+  height: 40px;
+  font-family: "Roboto", sans-serif;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  font-size: large;
+}
+.input:focus {
+  outline-color: rgb(236, 75, 102);
+}
+.radio-container {
+  display: inline-block;
+  margin-right: 70px;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+}
+.radio-container > input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  /* background-color: rgb(236, 75, 102); */
+  background-color: lightgrey;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkmark.selected {
+  background-color: rgb(236, 75, 102);
+}
+.checkmark:hover {
+  filter: brightness(95%);
+}
+/* Header Styles */
+.header {
+  height: 60px;
+  background-color: rgb(5, 5, 41);
+  color: rgb(236, 75, 102);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* feedback items */
+.feedback-rating {
+  border-radius: 50%;
+  display: inline-block;
+  background-color: rgb(236, 75, 102);
+  height: 45px;
+  width: 45px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  z-index: 2;
+}
+.feedback-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.feedback-controls > i {
+  margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.feedback-controls > i:hover {
+  color: rgb(236, 75, 102);
+}
+/* Stats */
+.stats {
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 20px;
+}
+/* Feedback Form */
+.form-group {
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
