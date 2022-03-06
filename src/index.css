@@ -157,3 +157,22 @@ body {
   justify-content: center;
   position: relative;
 }
+
+/* Animationg the list */
+.item-enter {
+  opacity: 0;
+  transform: translateX(-100vw);
+}
+.item-enter-active {
+  opacity: 1;
+  transform: translateX(0vw);
+  transition: all 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transform: translateX(100vw);
+  transition: all 500ms ease-in;
+}
