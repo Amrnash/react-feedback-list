@@ -1,13 +1,18 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const feedbackContext = createContext();
 export const FeedbackProvider = ({ children }) => {
-  const [feedbackItems, setFeedbackItems] = useState([
-    { id: uuidv4(), text: "hello world", rating: 9 },
-    { id: uuidv4(), text: "hello from the other side", rating: 4 },
-    { id: uuidv4(), text: "one two three FOUR!", rating: 6 },
-  ]);
+  // Get Items from localStorage
+  useEffect(() => {
+    if (localStorage.getItem("feedbackItems")) {
+      const feedbackItemsFromLocalStorage = JSON.parse(
+        localStorage.getItem("feedbackItems")
+      );
+      setFeedbackItems(feedbackItemsFromLocalStorage);
+    }
+  }, []);
+  const [feedbackItems, setFeedbackItems] = useState([]);
   const [editedItem, setEditedItem] = useState({ item: {}, edit: false });
   const handleDelete = (id) => {
     if (window.confirm("Do you really want to delete this item?")) {
@@ -15,23 +20,34 @@ export const FeedbackProvider = ({ children }) => {
         (item) => item.id !== id
       );
       setFeedbackItems(filteredFeedbackItems);
+      // Sync with LocalStorage
+      localStorage.setItem(
+        "feedbackItems",
+        JSON.stringify(filteredFeedbackItems)
+      );
     }
   };
   const handleAddFeedback = (text, rating) => {
     const newFeedback = { id: uuidv4(), text, rating };
     setFeedbackItems([newFeedback, ...feedbackItems]);
+    // Sync with LocalStorage
+    localStorage.setItem(
+      "feedbackItems",
+      JSON.stringify([newFeedback, ...feedbackItems])
+    );
   };
   const handleEditFeedback = (id) => {
     const editedItemById = feedbackItems.find((item) => item.id === id);
     setEditedItem({ item: editedItemById, edit: true });
   };
   const handleUpdateFeedback = (id, text, rating) => {
-    setFeedbackItems(
-      feedbackItems.map((item) => {
-        if (item.id === id) return { id, text, rating };
-        else return item;
-      })
-    );
+    const updatedItems = feedbackItems.map((item) => {
+      if (item.id === id) return { id, text, rating };
+      else return item;
+    });
+    setFeedbackItems(updatedItems);
+    // Sync with LocalStorage
+    localStorage.setItem("feedbackItems", JSON.stringify(updatedItems));
   };
   return (
     <feedbackContext.Provider

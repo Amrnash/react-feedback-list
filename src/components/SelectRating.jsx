@@ -8,7 +8,7 @@ function SelectRating({ select, number }) {
       setSelected(editedItem.item.rating);
     }
   }, [editedItem]);
-  const [selected, setSelected] = useState(4);
+  const [selected, setSelected] = useState(1);
   const ArrayOfNumbers = new Array(number + 1);
   for (let index = 1; index < ArrayOfNumbers.length; index++) {
     ArrayOfNumbers[index] = index;
